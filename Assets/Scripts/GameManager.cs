@@ -5,15 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public void LoadStartGame()
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene("GameScene");
         Time.timeScale = 1;
-    }
-
-    public void LoadMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 0;
+        SceneManager.LoadScene(sceneName);
     }
 }

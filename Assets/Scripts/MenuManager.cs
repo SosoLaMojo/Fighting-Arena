@@ -5,6 +5,8 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject panelMenuStartGame;
+    [SerializeField] private GameObject panelSelection;
+
     public void ActivatePanelMenuStartGame()
     {
         panelMenuStartGame.gameObject.SetActive(true);
@@ -16,8 +18,16 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-
-
+    public void ActivatePanelSelection()
+    {
+        panelSelection.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void DesactivatePanelSelection()
+    {
+        panelSelection.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
 
     public void Quit()
     {
