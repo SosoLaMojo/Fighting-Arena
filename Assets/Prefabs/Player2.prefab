@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c81c34af62d8634ab3ea4faa3fcdc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Solange
+  unitName: Vincent
   damage: 5
   maxHP: 30
   currentHP: 30
