@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   [SerializeField] private string name;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   [SerializeField] private int damage;
+   [SerializeField] private int maxHP;
+   [SerializeField] private int currentHP;
 }
