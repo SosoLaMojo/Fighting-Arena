@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     private bool hasChosen = false;
     private bool P1ChoseAdventurer;
     private bool P2ChoseAdventurer;
+    
+    private int P1ArenaChoice;
+    private int P2ArenaChoice;
 
 
     private void Update()
@@ -29,28 +32,27 @@ public class GameManager : MonoBehaviour
                 if (hasChosen)
                 {
                     state = ChoicesStates.P2TURN;
-
-                    hasChosen = false;
                 }
                 break;
             }
             case ChoicesStates.P2TURN:
             {
-                if (hasChosen)
-                {
-                    LoadScene("SceneVincent");
-                }
                 break;
             }
         }
     }
 
-
+    public void EndChoiceP1()
+    {
+        hasChosen = true;
+    }
+    
     public void LoadScene(string sceneName)
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
+    
 
     public void GladiatorChoice()
     {
@@ -73,6 +75,54 @@ public class GameManager : MonoBehaviour
         else if (state == ChoicesStates.P2TURN)
         {
             P2ChoseAdventurer = true;
+        }
+    }
+
+    public void DesertChoice()
+    {
+        if (state == ChoicesStates.P1TURN)
+        {
+            P1ArenaChoice = 1;
+        }
+        else if (state == ChoicesStates.P2TURN)
+        {
+            P2ArenaChoice = 1;
+        }
+    }
+
+    public void DesertNightChoice()
+    {
+        if (state == ChoicesStates.P1TURN)
+        {
+            P1ArenaChoice = 2;
+        }
+        else if (state == ChoicesStates.P2TURN)
+        {
+            P2ArenaChoice = 2;
+        }
+    }
+
+    public void ScorchLandChoice()
+    {
+        if (state == ChoicesStates.P1TURN)
+        {
+            P1ArenaChoice = 3;
+        }
+        else if (state == ChoicesStates.P2TURN)
+        {
+            P2ArenaChoice = 3;
+        }
+    }
+
+    public void AcidSwampChoice()
+    {
+        if (state == ChoicesStates.P1TURN)
+        {
+            P1ArenaChoice = 4;
+        }
+        else if (state == ChoicesStates.P2TURN)
+        {
+            P2ArenaChoice = 4;
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject panelMenuStartGame;
-    [SerializeField] private GameObject panelSelection;
+    [SerializeField] private GameObject panelSelectionP1;
+    [SerializeField] private GameObject panelSelectionP2;
 
     public void ActivatePanelMenuStartGame()
     {
@@ -18,14 +20,25 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void ActivatePanelSelection()
+    public void ActivatePanelSelectionP1()
     {
-        panelSelection.gameObject.SetActive(true);
+        panelSelectionP1.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
-    public void DesactivatePanelSelection()
+    public void DesactivatePanelSelectionP1()
     {
-        panelSelection.gameObject.SetActive(false);
+        panelSelectionP1.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+    
+    public void ActivatePanelSelectionP2()
+    {
+        panelSelectionP2.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void DesactivatePanelSelectionP2()
+    {
+        panelSelectionP2.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 
