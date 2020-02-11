@@ -20,6 +20,9 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private BattleHUD P1HUD;
     [SerializeField] private BattleHUD P2HUD;
 
+    [SerializeField] private GameObject P1Actions;
+    [SerializeField] private GameObject P2Actions;
+
     [SerializeField] private TextMeshProUGUI dialogText;
 
     private Unit P1Unit;
@@ -28,6 +31,8 @@ public class BattleSystem : MonoBehaviour
     private bool hasPlayed = false;
     private bool P1Dead;
     private bool P2Dead;
+    private bool P1IsDefending = false;
+    private bool P2IsDefending = false;
 
     private int healAmount = 4;
     
@@ -51,18 +56,27 @@ public class BattleSystem : MonoBehaviour
                 P1HUD.SetHUD(P1Unit);
                 P2HUD.SetHUD(P2Unit);
 
-                dialogText.text = "The battle begins!";
+                StartCoroutine(StartBattle());
                 
                 state = BattleState.P1TURN;
+
+                if (state == BattleState.P1TURN)
+                {
+                    dialogText.text = P1Unit.UnitName + ", choose an action:";
+                }
 
                 break;
             }
             case BattleState.P1TURN:
             {
-                dialogText.text = P1Unit.UnitName + ", choose an action:";
+                P1Actions.SetActive(true);
+                P2Actions.SetActive(false);
+                
+                
 
                 if (hasPlayed && !P2Dead)
                 {
+                    dialogText.text = P2Unit.UnitName + ", choose an action:";
                     state = BattleState.P2TURN;
                     hasPlayed = false;
                 }
@@ -75,10 +89,12 @@ public class BattleSystem : MonoBehaviour
             }
             case BattleState.P2TURN:
             {
-                dialogText.text = P2Unit.UnitName + ", choose an action:";
-                
+                P2Actions.SetActive(true);
+                P1Actions.SetActive(false);
+
                 if (hasPlayed && !P1Dead)
                 {
+                    dialogText.text = P1Unit.UnitName + ", choose an action:";
                     state = BattleState.P1TURN;
                     hasPlayed = false;
                 }
@@ -107,24 +123,39 @@ public class BattleSystem : MonoBehaviour
 
     public void P1Attack()
     {
-        P2Dead = P2Unit.TakeDamage(P1Unit.Damage);
+        if (P2IsDefending)
+        {
+            StartCoroutine(PlayerDefend());
+            P2IsDefending = false;
+        }
+        else
+        {
+            P2Dead = P2Unit.TakeDamage(P1Unit.Damage);
         
-        P2HUD.SetHP(P2Unit.CurrentHp);
+            P2HUD.SetHP(P2Unit.CurrentHp);
+
+            StartCoroutine(PlayerAttack());
+        }
         
-        //set coroutine
-        dialogText.text = P1Unit.UnitName + "dealt" + P1Unit.Damage + "to" + P2Unit.UnitName;
-        hasPlayed = true;
     }
     
     public void P2Attack()
     {
-        P1Dead = P1Unit.TakeDamage(P2Unit.Damage);
+        if (P1IsDefending)
+        {
+            StartCoroutine(PlayerDefend());
+            P2IsDefending = false;
+        }
+        else
+        {
+            P1Dead = P1Unit.TakeDamage(P2Unit.Damage);
         
-        P1HUD.SetHP(P1Unit.CurrentHp);
+            P1HUD.SetHP(P1Unit.CurrentHp);
+            
+            StartCoroutine(PlayerAttack());
+        }
         
-        //set coroutine
-        dialogText.text = P2Unit.UnitName + "dealt" + P2Unit.Damage + "to" + P1Unit.UnitName;
-        hasPlayed = true;
+        
     }
 
     public void P1Heal()
@@ -145,6 +176,20 @@ public class BattleSystem : MonoBehaviour
         hasPlayed = true;
     }
 
+    public void Defend()
+    {
+        if (state == BattleState.P1TURN)
+        {
+            P1IsDefending = true;
+        }
+        else if (state == BattleState.P2TURN)
+        {
+            P2IsDefending = true;
+        }
+
+        hasPlayed = true;
+    }
+
     void EndBattle()
     {
         if (state == BattleState.P1WON)
@@ -155,5 +200,37 @@ public class BattleSystem : MonoBehaviour
         {
             dialogText.text = "Congratulations, " + P2Unit.UnitName + ", you have won the battle!";
         }
+    }
+
+    IEnumerator PlayerDefend()
+    {
+        dialogText.text = "Your attack failed, because your enemy was defending";
+
+        yield return new WaitForSeconds(2f);
+        
+        hasPlayed = true;
+    }
+
+    IEnumerator PlayerAttack()
+    {
+        if (state == BattleState.P1TURN)
+        {
+            dialogText.text = P1Unit.UnitName + " dealt " + P1Unit.Damage + " to " + P2Unit.UnitName;
+        }
+        else if (state == BattleState.P2TURN)
+        {
+            dialogText.text = P2Unit.UnitName + " dealt " + P2Unit.Damage + " to " + P1Unit.UnitName;
+        }
+        
+        yield return new WaitForSeconds(2f);
+        
+        hasPlayed = true;
+    }
+
+    IEnumerator StartBattle()
+    {
+        dialogText.text = "The battle begins!";
+        
+        yield return new WaitForSeconds(2f);
     }
 }
