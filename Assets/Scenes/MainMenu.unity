@@ -840,6 +840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91272bfd1b644d0409d8fe3433fda2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Adventurer: {fileID: 0}
+  Gladiator: {fileID: 0}
 --- !u!4 &325212328
 Transform:
   m_ObjectHideFlags: 0
@@ -1210,8 +1212,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1668,8 +1670,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -114, y: -62}
-  m_SizeDelta: {x: 95.6, y: 38.4}
+  m_AnchoredPosition: {x: -212.7, y: -3.8}
+  m_SizeDelta: {x: 194.3, y: 96.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &530398788
 MonoBehaviour:
@@ -2968,7 +2970,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1363489629}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 325212327}
+        m_MethodName: AdventurerChoice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1363489629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3848,8 +3861,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 92, y: -62}
-  m_SizeDelta: {x: 95.6, y: 38.4}
+  m_AnchoredPosition: {x: 214, y: -3.9}
+  m_SizeDelta: {x: 214, y: 94.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1752010414
 MonoBehaviour:
@@ -4556,12 +4569,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 72.24
   m_fontStyle: 1
   m_textAlignment: 514
   m_characterSpacing: 0
@@ -5027,10 +5040,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -5471,7 +5484,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2112074625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 325212327}
+        m_MethodName: GladiatorChoice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2112074625
 MonoBehaviour:
   m_ObjectHideFlags: 0
