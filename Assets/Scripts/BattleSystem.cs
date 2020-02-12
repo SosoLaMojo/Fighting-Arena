@@ -11,8 +11,8 @@ public class BattleSystem : MonoBehaviour
 {
     [SerializeField] private BattleState state;
 
-    [SerializeField] private GameObject P1;
-    [SerializeField] private GameObject P2;
+    [SerializeField] private GameObject Adventurer;
+    [SerializeField] private GameObject Gladiator;
     
     [SerializeField] private Transform P1BattleStation;
     [SerializeField] private Transform P2BattleStation;
@@ -24,6 +24,9 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private GameObject P2Actions;
 
     [SerializeField] private TextMeshProUGUI dialogText;
+
+    private GameObject P1;
+    private GameObject P2;
 
     private Unit P1Unit;
     private Unit P2Unit;
@@ -47,6 +50,25 @@ public class BattleSystem : MonoBehaviour
         {
             case BattleState.START:
             {
+                
+                if (GameManager.instance.P1ChoseAdventurer1)
+                {
+                    P1 = Adventurer;
+                }
+                else if (!GameManager.instance.P1ChoseAdventurer1)
+                {
+                    P1 = Gladiator;
+                }
+
+                if (GameManager.instance.P2ChoseAdventurer1)
+                {
+                    P2 = Adventurer;
+                }
+                else if (!GameManager.instance.P2ChoseAdventurer1)
+                {
+                    P2 = Gladiator;
+                }
+                
                 GameObject P1GO = Instantiate(P1, P1BattleStation);
                 P1Unit = P1GO.GetComponent<Unit>();
         

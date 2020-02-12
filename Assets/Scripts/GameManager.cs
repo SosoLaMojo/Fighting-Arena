@@ -4,23 +4,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = System.Random;
 
-public enum ChoicesStates {P1TURN, P2TURN}
+public enum ChoicesStates {P1TURN, P2TURN, ENDCHOICE}
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     
     private ChoicesStates state;
     
-    [SerializeField] private GameObject Adventurer;
-    [SerializeField] private GameObject Gladiator;
-
     private bool hasChosen = false;
     private bool P1ChoseAdventurer;
     private bool P2ChoseAdventurer;
     
     private int P1ArenaChoice;
     private int P2ArenaChoice;
+    private int arenaChoice;
+
+    public int ArenaChoice
+    {
+        get => arenaChoice;
+        set => arenaChoice = value;
+    }
+
+    public bool P1ChoseAdventurer1
+    {
+        get => P1ChoseAdventurer;
+        set => P1ChoseAdventurer = value;
+    }
+
+    public bool P2ChoseAdventurer1
+    {
+        get => P2ChoseAdventurer;
+        set => P2ChoseAdventurer = value;
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+        DontDestroyOnLoad(gameObject);
+    }
 
 
     private void Update()
@@ -49,6 +80,24 @@ public class GameManager : MonoBehaviour
     
     public void LoadScene(string sceneName)
     {
+        if (P1ArenaChoice == P2ArenaChoice)
+        {
+            arenaChoice = P1ArenaChoice;
+        }
+        else if (P1ArenaChoice != P2ArenaChoice)
+        {
+            float randomNumber = UnityEngine.Random.Range(0.0f, 1.0f);
+
+            if (randomNumber >= 0.5f)
+            {
+                arenaChoice = P1ArenaChoice;
+            }
+            else if (randomNumber < 0.5f)
+            {
+                arenaChoice = P2ArenaChoice;
+            }
+        }
+        
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
