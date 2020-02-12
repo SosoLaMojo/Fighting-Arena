@@ -1022,8 +1022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91272bfd1b644d0409d8fe3433fda2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Adventurer: {fileID: 0}
-  Gladiator: {fileID: 0}
 --- !u!4 &325212328
 Transform:
   m_ObjectHideFlags: 0
@@ -2185,7 +2183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalAxis: Horizontal_2
   m_VerticalAxis: Vertical_2
-  m_SubmitButton: Submit_2
+  m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
