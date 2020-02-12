@@ -6,12 +6,10 @@ using UnityEngine.UI;
 
 public class BattleHUD : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private Slider HPSlider;
 
     public void SetHUD(Unit unit)
     {
-        nameText.text = unit.UnitName;
         HPSlider.maxValue = unit.MaxHp;
         HPSlider.value = unit.CurrentHp;
 

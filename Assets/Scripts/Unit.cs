@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-   [SerializeField] private string unitName;
-
    [SerializeField] private int damage;
    [SerializeField] private int maxHP;
    [SerializeField] private int currentHP;
-   
-   public string UnitName
-   {
-      get => unitName;
-      set => unitName = value;
-   }
 
    public int MaxHp
    {

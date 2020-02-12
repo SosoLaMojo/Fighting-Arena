@@ -58,11 +58,15 @@ public class BattleSystem : MonoBehaviour
                 else if (!GameManager.instance.P1ChoseAdventurer1)
                 {
                     P1 = Gladiator;
+                    
+                    P1BattleStation.transform.Rotate(0f, 180.0f, 0f);
                 }
 
                 if (GameManager.instance.P2ChoseAdventurer1)
                 {
                     P2 = Adventurer;
+                    
+                    P2BattleStation.transform.Rotate(0f, 180.0f, 0f);
                 }
                 else if (!GameManager.instance.P2ChoseAdventurer1)
                 {
@@ -84,7 +88,7 @@ public class BattleSystem : MonoBehaviour
 
                 if (state == BattleState.P1TURN)
                 {
-                    dialogText.text = P1Unit.UnitName + ", choose an action:";
+                    dialogText.text = "Player 1, choose an action:";
                 }
 
                 break;
@@ -98,7 +102,7 @@ public class BattleSystem : MonoBehaviour
 
                 if (hasPlayed && !P2Dead)
                 {
-                    dialogText.text = P2Unit.UnitName + ", choose an action:";
+                    dialogText.text = "Player 2, choose an action:";
                     state = BattleState.P2TURN;
                     hasPlayed = false;
                 }
@@ -116,7 +120,7 @@ public class BattleSystem : MonoBehaviour
 
                 if (hasPlayed && !P1Dead)
                 {
-                    dialogText.text = P1Unit.UnitName + ", choose an action:";
+                    dialogText.text = "Player 1, choose an action:";
                     state = BattleState.P1TURN;
                     hasPlayed = false;
                 }
@@ -216,11 +220,11 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.P1WON)
         {
-            dialogText.text = "Congratulations, " + P1Unit.UnitName + ", you have won the battle!";
+            dialogText.text = "Congratulations, Player 1, you have won the battle!";
         }
         else if (state == BattleState.P2WON)
         {
-            dialogText.text = "Congratulations, " + P2Unit.UnitName + ", you have won the battle!";
+            dialogText.text = "Congratulations, Player 2, you have won the battle!";
         }
     }
 
@@ -237,11 +241,11 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.P1TURN)
         {
-            dialogText.text = P1Unit.UnitName + " dealt " + P1Unit.Damage + " to " + P2Unit.UnitName;
+            dialogText.text = " Player 1 dealt " + P1Unit.Damage + " to Player 2";
         }
         else if (state == BattleState.P2TURN)
         {
-            dialogText.text = P2Unit.UnitName + " dealt " + P2Unit.Damage + " to " + P1Unit.UnitName;
+            dialogText.text = "Player 2 dealt " + P2Unit.Damage + " to Player 1";
         }
         
         yield return new WaitForSeconds(2f);
